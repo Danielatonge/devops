@@ -2,10 +2,8 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 import requests
 from datetime import datetime
-import pytz
 
 app = FastAPI()
-
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root():
