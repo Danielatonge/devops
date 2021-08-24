@@ -2,7 +2,7 @@
 * Use lightweight images based on alpine distribution
 * Avoid unnecessary privileges
 - Use docker layer caching. First install dependencies, then copy source code
-- Use multi-stage build for complied applications (e.g. golang)
+- Use multi-stage build for complied applications
 - Scan the images to detect potential problems and security issues. It is recommended to scan images every week.
 - Support configuration of the container via environment variables
 - Use docker-compose for easier runs
