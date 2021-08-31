@@ -13,7 +13,7 @@
 + https://dzone.com/articles/7-best-python-code-review-tools-recommended-by-dev
 
 ## Unit Test
-+ The function ```test_read_root()``` tests the root endpoint, sending a get request to ``` "/" ``` route and making sure the response status code is ```200``` i.e succesful
++ The function ```test_read_root()``` tests the root endpoint, sending a get request to ``` "/" ``` route and making sure the response status code is ```200``` i.e successful
 
 ## Best practices on Code Testing
 - Testing should be subdivided into units and each testing unit should focus on one tiny bit of functionality and make sure it is correct.
