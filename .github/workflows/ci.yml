@@ -1,4 +1,4 @@
-name: Continuous Integration of a python application
+name: Continuous Integration
 
 on:
   push:
@@ -39,7 +39,7 @@ jobs:
       name: Lint with pylint
       run: |
         cd ${{ env.working_dir }}/Current_Moscow_Time
-        pylint
+        pylint `ls |grep .py$|xargs`
       continue-on-error: false
     - 
       name: Test with pytest
