@@ -1,7 +1,7 @@
+from datetime import datetime
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 import requests
-from datetime import datetime
 
 app = FastAPI()
 
@@ -15,7 +15,9 @@ async def read_root():
             <title>Current Moscow Time</title>
         </head>
         <body >
-            <h1 style="text-align: center;"><span style="font-family:verdana,geneva,sans-serif;">Current Moscow Time</span></h1>
+            <h1 style="text-align: center;">
+                <span style="font-family:verdana,geneva,sans-serif;">Current Moscow Time</span>
+            </h1>
             <p style="text-align: center;font-family:verdana,geneva,sans-serif;">%s</p>
         </body>
     </html>
