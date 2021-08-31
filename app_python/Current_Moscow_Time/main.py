@@ -1,7 +1,11 @@
+""" python FastApi main runner
+"""
+
 from datetime import datetime
+import requests
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
-import requests
+
 
 app = FastAPI()
 
