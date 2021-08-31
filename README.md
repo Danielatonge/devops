@@ -1,3 +1,5 @@
+![CI workflow](https://github.com/Danielatonge/devops/actions/workflows/ci.yml/badge.svg)
+
 ## Intro
 
 Python application written using FastAPI framework and WorldTimeAPI showing current Moscow time.
