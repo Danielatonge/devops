@@ -18,6 +18,7 @@ pipeline {
         stage('Installation') {
             steps {
                 echo "Started Installation"
+                sh 'apk add gcc musl-dev docker'
                 sh 'pip3 install pylint -r $app_dir/requirements.txt'
             }
         }
