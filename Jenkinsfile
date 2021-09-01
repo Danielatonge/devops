@@ -6,6 +6,7 @@ pipeline {
     agent {
         docker {
             image 'python:3.9.6-alpine'
+            args '-v /var/run/docker.sock:/var/run/docker.sock -u 0 --network host'
         }
     }
     stages {
@@ -17,8 +18,7 @@ pipeline {
         stage('Installation') {
             steps {
                 echo "Started Installation"
-                sh 'python pip install --upgrade pip'
-                sh 'pip install -r $app_dir/requirements.txt'
+                sh 'pip3 install -r $app_dir/requirements.txt'
             }
         }
         stage('Linting') {
