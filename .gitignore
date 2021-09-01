@@ -6,3 +6,7 @@ app_python/*/venv/
 app_python/.DS_Store
 app_python/Dockerfile
 app_python/*/venv
+terraform/*/terraform.tfvars
+terraform/*/terraform.tfstate
+terraform/*/.terraform*
+terraform/*/virtualbox.box
