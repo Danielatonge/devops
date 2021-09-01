@@ -24,15 +24,13 @@ pipeline {
         stage('Linting') {
             steps {
                 echo "Started Linting..."
-                sh 'cd $app_dir/Current_Moscow_Time'
-                sh 'pylint `ls |grep .py$|xargs`'
+                sh 'cd $app_dir/Current_Moscow_Time && pylint `ls |grep .py$|xargs`'
             }
         }
         stage('Testing'){
             steps {
                 echo "Started Testing..."
-                sh 'cd $app_dir/Current_Moscow_Time'
-                sh "pytest"
+                sh 'cd $app_dir/Current_Moscow_Time && pytest'
             }
         }
         stage('Building and Deployment') {
