@@ -36,11 +36,13 @@ pipeline {
         }
         stage('Building and Deployment') {
             steps {
-                script {
-                    echo "Started Building and Deployment"
-                    def app_image = docker.build('$registry')
-                    docker.withRegistry('', 'dockerhub'){
-                        app_image.push()
+                dir("${app_dir}") {
+                    script {
+                        echo "Started Building and Deployment"
+                        def app_image = docker.build('$registry:latest')
+                        docker.withRegistry('', 'dockerhub'){
+                            app_image.push()
+                        }
                     }
                 }
             }
