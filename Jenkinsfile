@@ -14,7 +14,6 @@ pipeline {
                 checkout scm
             }
         }
-
         stage('Installation') {
             steps {
                 echo "Started Installation"
