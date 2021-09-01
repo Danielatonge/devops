@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        registry = "Danielatonge/devops"
+        registry = "danielatonge/devops"
         app_dir = "app_python"
     }
     agent {
