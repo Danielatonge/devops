@@ -18,7 +18,7 @@ pipeline {
         stage('Installation') {
             steps {
                 echo "Started Installation"
-                sh 'pip3 install -r $app_dir/requirements.txt'
+                sh 'pip3 install pylint -r $app_dir/requirements.txt'
             }
         }
         stage('Linting') {
