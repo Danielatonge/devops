@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        registry = "danielatonge/devops"
+        registry = "danielatonge/continuous_integration"
         app_dir = "app_python"
     }
     agent {
