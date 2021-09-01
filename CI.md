@@ -21,3 +21,5 @@
 
 ## References:
 + https://www.datree.io/resources/github-actions-best-practices
++ https://www.lambdatest.com/blog/jenkins-best-practices/
++ https://www.jenkins.io/doc/book/pipeline/pipeline-best-practices/
