@@ -2,7 +2,6 @@
 * Make sure you are within the ansible directory:
 
 * Run vagrant. This will create 1 virtual machine and provisions the python app_playbook.
-
 ```commandline
 vagrant up
 ```

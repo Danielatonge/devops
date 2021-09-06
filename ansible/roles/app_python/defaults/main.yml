@@ -1,0 +1,4 @@
+---
+# defaults file for app_python
+image_name: 'danielatonge/continuous_integration'
+image_tag: 'latest'
