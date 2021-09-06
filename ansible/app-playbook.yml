@@ -1,0 +1,5 @@
+---
+- name: "Deploy python application with docker-compose"
+  hosts: all
+  roles:
+    - app_python

@@ -1,0 +1,17 @@
+---
+# tasks file for app_python
+- name: Create app directory
+  file:
+    path: /opt/app_python/
+    state: directory
+    mode: 0755
+
+- name: Install application docker-compose file.
+  ansible.builtin.template:
+    src: ../templates/docker-compose.j2
+    dest: /opt/app_python/docker-compose.yml
+
+- name: Deploy docker-compose configuration.
+  ansible.builtin.shell: docker-compose up -d
+  args:
+    chdir: /opt/app_python/

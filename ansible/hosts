@@ -1,0 +1,6 @@
+[ec2]
+ec2-3-14-67-18.us-east-2.compute.amazonaws.com ansible_python_interpreter=/usr/bin/python3
+
+[ec2:vars]
+ansible_ssh_private_key_file=~/Downloads/ansible.pem
+ansible_user=ec2-user
