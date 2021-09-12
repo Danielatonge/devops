@@ -4,6 +4,9 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/app_python/Current_Moscow_Time/.pytest_cache" />
       <excludeFolder url="file://$MODULE_DIR$/app_python/Current_Moscow_Time/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/ansible/.vagrant/machines" />
+      <excludeFolder url="file://$MODULE_DIR$/terraform/aws/.terraform" />
+      <excludeFolder url="file://$MODULE_DIR$/terraform/virtualbox/.terraform" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
