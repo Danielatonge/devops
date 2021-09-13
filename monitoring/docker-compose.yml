@@ -1,0 +1,78 @@
+version: "3.7"
+
+networks:
+  app-net:
+    name: app-net
+
+services:
+  app_python:
+    image: danielatonge/continuous_integration:latest
+    container_name: current-moscow-time
+    ports:
+      - "8080:3000"
+    networks:
+      - app-net
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{ .ImageName }}|{{ .Name }}"
+  loki:
+    image: grafana/loki:2.3.0
+    container_name: loki-monitor
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./loki.yml:/etc/loki/loki.yml
+    command: -config.file=/etc/loki/loki.yml
+    networks:
+      - app-net
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://loki:3100/api/prom/push"
+  promtail:
+    image: grafana/promtail:2.3.0
+    container_name: promtail-monitor
+    ports:
+      - "9080:9080"
+    volumes:
+      - /var/log:/var/log
+      - ./promtail.yml:/etc/promtail/promtail.yml
+    command: -config.file=/etc/promtail/promtail.yml
+    networks:
+      - app-net
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://loki:3100/api/prom/push"
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana-monitor
+    ports:
+      - "3000:3000"
+    networks:
+      - app-net
+    volumes:
+      - ./datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://loki:3100/api/prom/push"
+
+  prometheus:
+    container_name: prometheus.yml-monitor
+    image: prom/prometheus:v2.18.1
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command: --config.file=/etc/prometheus/prometheus.yml
+    networks:
+      - app-net
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
+        tag: "{{.ImageName}}|{{.Name}}"
