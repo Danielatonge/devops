@@ -12,6 +12,8 @@ services:
       - "8080:3000"
     networks:
       - app-net
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
     logging:
       driver: "json-file"
       options:
@@ -27,24 +29,26 @@ services:
     networks:
       - app-net
     logging:
-      driver: loki
+      driver: "json-file"
       options:
-        loki-url: "http://loki:3100/api/prom/push"
+        tag: "{{ .ImageName }}|{{ .Name }}"
+
   promtail:
     image: grafana/promtail:2.3.0
     container_name: promtail-monitor
     ports:
       - "9080:9080"
     volumes:
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
       - /var/log:/var/log
       - ./promtail.yml:/etc/promtail/promtail.yml
     command: -config.file=/etc/promtail/promtail.yml
     networks:
       - app-net
     logging:
-      driver: loki
+      driver: "json-file"
       options:
-        loki-url: "http://loki:3100/api/prom/push"
+        tag: "{{ .ImageName }}|{{ .Name }}"
 
   grafana:
     image: grafana/grafana:latest
@@ -56,9 +60,11 @@ services:
     volumes:
       - ./datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
     logging:
-      driver: loki
+      driver: "json-file"
       options:
-        loki-url: "http://loki:3100/api/prom/push"
+        max-size: "30m"
+        max-file: "5"
+        tag: "{{.ImageName}}|{{.Name}}"
 
   prometheus:
     container_name: prometheus.yml-monitor
