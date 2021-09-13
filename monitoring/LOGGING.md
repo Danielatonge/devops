@@ -69,3 +69,31 @@
   information, refer to Linking.
 * Add a Dashboard list panel. You can then customize what you see by doing tag or folder searches.
 * Add a Text panel and use markdown to customize the display.
+
+#### Related to creating the dashboards
+
+* A dashboard should tell a story or answer a question
+* Dashboards should reduce cognitive load, not add to it
+* When creating a new dashboard, make sure it has a meaningful name.
+* If you create many related dashboards, think about how to cross-reference them for easy navigation.
+* Avoid unnecessary dashboard refreshing to reduce the load on the network or backend.
+* Use the left and right Y-axes when displaying time series with different units or ranges.
+* Add documentation to dashboards and panels.
+* Reuse your dashboards and enforce consistency by using templates and variables.
+* Be careful with stacking graph data.
+* The visualizations can be misleading, and hide important data. Recommended turning it off in most cases.
+
+## Monitoring: Metrics
+
+`http://localhost:9090/targets`
+![services](./images/prometheus.png)
+
+### Loki Dashboard
+
+![](./images/dashboard_loki.png)
+
+### Prometheus Dashboard
+
+![](./images/dashboard_Prometheus.png)
+
+
