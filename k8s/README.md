@@ -37,3 +37,20 @@ application. Create a deployment.yml manifest for it. Set up at least 3 replicas
     ```bash
     kubectl delete deployment,svc currentmoscowtime
     ```
+
+# HELM
+1. Create a helm chart template:
+    ```bash
+    helm create currentmoscowtime
+    ```
+2. `deployment.yaml`, `service.yaml` and `values.yaml` were modified accordingly to my image, tag, port and type of service.
+
+
+3. Install my helm chart: 
+    ```bash
+    helm install currentmoscowtime currentmoscowtime
+    ```
+4. Check it by `minikube service currentmoscowtime` and provide the output of `kubectl get pods,svc` command:
+   ![](images/helm-final.png) 
+   ![](images/helm-dashboard.png)
+   ![](images/helm-running.png)
