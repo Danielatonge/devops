@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: current-moscow-time
+  name: currentmoscowtime
 spec:
   selector:
-    app: current-moscow-time
+    app: currentmoscowtime
   ports:
     - protocol: TCP
       port: 80

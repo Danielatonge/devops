@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: current-moscow-time
+  name: currentmoscowtime
   labels:
-    app: current-moscow-time
+    app: currentmoscowtime
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: current-moscow-time
+      app: currentmoscowtime
   template:
     metadata:
       labels:
-        app: current-moscow-time
+        app: currentmoscowtime
     spec:
       containers:
-        - name: current-moscow-time
+        - name: currentmoscowtime
           image: danielatonge/continuous_integration:latest
           ports:
             - containerPort: 3000
