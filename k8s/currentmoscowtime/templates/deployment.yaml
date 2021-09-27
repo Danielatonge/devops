@@ -44,6 +44,20 @@ spec:
 #              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: CURRENTMOSCOWTIME-SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: username
+          volumeMounts:
+            - name: configmap-volume
+              subPath: config.json
+              mountPath: /app/config.json
+      volumes:
+        - name: configmap-volume
+          configMap:
+            name: currentmoscowtime-config
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
