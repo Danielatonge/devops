@@ -10,6 +10,10 @@ image:
   tag: "latest"
   port: 3000
 
+secrets:
+  name: currentmoscowtime-secret
+  username: currentmoscowtime
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -28,8 +32,13 @@ service:
   port: 3000
 
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
+resources:
+  requests:
+    cpu: ".2"
+    memory: "100Mi"
+  limits:
+    cpu: ".5"
+    memory: "256Mi"
 
 
 nodeSelector: {}
