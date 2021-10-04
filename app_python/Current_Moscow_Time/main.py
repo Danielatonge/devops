@@ -6,7 +6,7 @@ from os import path
 
 import requests
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse, StreamingResponse
+from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 
@@ -44,7 +44,10 @@ async def read_root():
 
 
 async def record_time(time):
-    with open("log/visit.txt", "a") as output:
+    """ The function records the current time into "visit.txt" file.
+        This simulates some persistent work
+    """
+    with open("log/visit.txt", "a", encoding="utf8") as output:
         output.write(f"Recorded-time: {time}\n")
 
 
@@ -54,7 +57,7 @@ async def load_visiting():
         with current moscow time which "/" was accessed
     """
     if path.exists('log/visit.txt'):
-        with open('log/visit.txt', 'r') as output:
+        with open('log/visit.txt', 'r',encoding="utf8") as output:
             return output.readlines()
 
     return "Visit '/' route"
