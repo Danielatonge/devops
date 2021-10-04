@@ -15,6 +15,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 USER app
 
+RUN mkdir log
+
 EXPOSE 3000
 
 COPY --chown=app:app Current_Moscow_Time/ ./Current_Moscow_Time/

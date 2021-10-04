@@ -44,7 +44,7 @@ async def read_root():
 
 
 async def record_time(time):
-    with open("visit.txt", "a") as output:
+    with open("log/visit.txt", "a") as output:
         output.write(f"Recorded-time: {time}\n")
 
 
@@ -53,8 +53,8 @@ async def load_visiting():
     """ The function response to the "/visits" endpoint by sending some response
         with current moscow time which "/" was accessed
     """
-    if path.exists('visit.txt'):
-        with open('visit.txt', 'r') as output:
+    if path.exists('log/visit.txt'):
+        with open('log/visit.txt', 'r') as output:
             return output.readlines()
 
     return "Visit '/' route"
