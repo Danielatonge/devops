@@ -1,11 +1,12 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "currentmoscowtime.fullname" . }}
   labels:
     {{- include "currentmoscowtime.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  serviceName: {{ .Values.service.name }}
   selector:
     matchLabels:
       {{- include "currentmoscowtime.selectorLabels" . | nindent 6 }}
@@ -25,39 +26,31 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: {{ .Values.image.port }}
-              protocol: TCP
-#          livenessProbe:
-#            httpGet:
-#              path: /
-#              port: http
-#          readinessProbe:
-#            httpGet:
-#              path: /
-#              port: http
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-          env:
-            - name: CURRENTMOSCOWTIME-SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.secrets.name }}
-                  key: username
-          volumeMounts:
-            - name: configmap-volume
-              subPath: config.json
-              mountPath: /app/config.json
-      volumes:
+      - name: {{ .Chart.Name }}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 12 }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.image.port }}
+          protocol: TCP
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+        env:
+        - name: CURRENTMOSCOWTIME-SECRET
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.secrets.name }}
+              key: username
+        volumeMounts:
         - name: configmap-volume
-          configMap:
-            name: currentmoscowtime-config
+          subPath: config.json
+          mountPath: /app/config.json
+      volumes:
+      - name: configmap-volume
+        configMap:
+          name: currentmoscowtime-config
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -70,3 +63,8 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  volumeClaimTemplates:
+  - metadata:
+      name: currentmoscowtime-volume
+    spec:
+      {{- toYaml .Values.statefulSet.volumeClaimTemplates.spec | nindent 10 }}

@@ -28,6 +28,7 @@ securityContext: {}
 
 
 service:
+  name: currentmoscowtime-service
   type: LoadBalancer
   port: 3000
 
@@ -40,6 +41,15 @@ resources:
     cpu: ".5"
     memory: "256Mi"
 
+statefulSet:
+  podManagementPolicy: "Parallel"
+  volumeClaimTemplates:
+    spec:
+      storageClassName: "storage-class"
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 256M
 
 nodeSelector: {}
 

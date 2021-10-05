@@ -23,7 +23,7 @@
 5. Use configuration files to deploy your
 application. Create a deployment.yml manifest for it. Set up at least 3 replicas:
     ```bash
-    kubectl apply -f deployment.yaml 
+    kubectl apply -f statefulset.yaml 
     ```
 6. Create a service.yml manifest for your app: 
     ```bash
